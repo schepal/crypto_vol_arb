@@ -57,9 +57,29 @@ call	     12000.0	  BTC-28AUG20-12000-C	 13.132293	       12.46561          482.
 ```
 Below we can manually see how to assess trading opportunity. 
 
+### Deribit Options Chain 
+![](/screenshots/deribit_screenshot.png)
+
+### FTX MOVE Contract Price
+![](/screenshots/ftx_screenshot.png)
 
 
+***Calculations:*** 
 
+Deribit Call Mid-Price: (496.19 + 514.12) / 2 = 505.155
+
+Deribit Put Mid-Price: (478.33 + 508.23) / 2 = 493.28
+
+Total Deribit Straddle Price = 505.155 + 493.28 = 998.435
+
+FTX MOVE Mid-Price = (674 + 695) / 2 = 684.50
+
+Difference = 998.435 - 684.50 = 313.94
+
+Note these numbers aren’t exactly the same as the figures below because the screenshots used the mid-price whereas the actual table below was calculated using the Deribit mark price. 
+
+### Arbitrage Output Analysis
+![](/screenshots/example_table_output.png)
 
 ## Risks and Assumptions Involved
 - Not a truly risk-free trade
