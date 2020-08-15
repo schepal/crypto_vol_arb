@@ -28,4 +28,8 @@ In theory an FTX MOVE contract with a similar maturity should be priced closely 
 - Liquidity Risk 
 
 ## Installation of dependencies
-- Include txt file
+Run the following command in terminal to install all of the required packages.
+
+```
+pip install -r requirements.txt
+```
