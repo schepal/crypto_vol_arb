@@ -15,10 +15,51 @@ In theory an FTX MOVE contract with a similar maturity should be priced closely 
 ## Key Parameters
 - Discuss thresholds and how to use the script
 
-## Examples 
-- Show screenshot of Deribit and FTX MOVE contracts
-- Show how an arb trade can be made
-- Include Jupyter Notebook with Examples  
+## Example
+In the example below, the script is setup to show how to analyze arbitrage opportunites for the chosen FTX MOVE contract.
+``` python
+>>> import crypto_vol as cv
+
+# List out all MOVE contracts trading on FTX
+>>> move_contracts = cv.FTX().get_move_contracts()
+>>> move_contracts
+['BTC-MOVE-0815',
+ 'BTC-MOVE-0816',
+ 'BTC-MOVE-WK-0821',
+ 'BTC-MOVE-WK-0828',
+ 'BTC-MOVE-WK-0904',
+ 'BTC-MOVE-WK-0911',
+ 'BTC-MOVE-2020Q3',
+ 'BTC-MOVE-2020Q4',
+ 'BTC-MOVE-2021Q1']
+
+# Choose whichever FTX MOVE contract you would like to analyze
+# Here we will take a look at 'BTC-MOVE-WK-0828'
+# You will need to adjust the `strike_threshold` and `days_threshold` accordingly
+>>> vol = cv.VolArb('BTC-MOVE-WK-0828', strike_threshold=200, days_threshold=2)
+
+# Retrieve all comparable Deribit Options to form an equivalent straddle
+>>> data = vol.get_comparable_deribit()
+>>> data
+# Returns a dataframe with all the respective options
+"""
+option_type	strike	  instrument_name	     ftx_expiry_days  deribit_expiry_days option_price
+put	       12000.0	  BTC-28AUG20-12000-P	 13.132293	       12.46561	         549.799060
+call	     12000.0	  BTC-28AUG20-12000-C	 13.132293	       12.46561          482.544639
+"""
+
+# Compare the FTX MOVE and Deribit Straddle 
+>>> vol.compare(data)
+# Returns a dataframe with printout of the price difference between the two contracts
+# Please see attached notebook for a more comprehensive example with a full dataframe output
+
+"""-33.695 % price differential between FTX MOVE and similar Deribit straddle"""
+```
+Below we can manually see how to assess trading opportunity. 
+
+
+
+
 
 ## Risks and Assumptions Involved
 - Not a truly risk-free trade
