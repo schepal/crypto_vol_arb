@@ -5,7 +5,6 @@ import time
 import calendar
 import sys
 
-
 class FTX:
      """
      The `FTX` class object is used to retrieve relevant MOVE contract data which is then 
@@ -82,7 +81,7 @@ class FTX:
         Returns
         -------------
         float:
-            Returns the strike price of the FTX MOVE contract
+            Returns the strike price of the FTX MOVE contract or the current index price if no strike exists
 
         """
         index = requests.get(self.ftx_api_endpoint + "/" + str(ftx_contract_name)).json()['result']
@@ -100,7 +99,6 @@ class VolArb(FTX):
      """
      def __init__(self, ftx_comparable_contract, strike_threshold=100, days_threshold=1):
         super().__init__()
-        
         """
         Initializes the `VolArb` class and uses super() to inherit the `FTX` methods.
         
@@ -120,7 +118,7 @@ class VolArb(FTX):
             is 1 day.
     
          """
-        self.deribit_api_endpoint = 'https://www.deribit.com/api/v2/public/'
+        self.deribit_api_endpoint='https://www.deribit.com/api/v2/public/'
         self.ftx_comparable_contract = ftx_comparable_contract
         self.strike_threshold=strike_threshold
         self.days_threshold=days_threshold
@@ -182,7 +180,6 @@ class VolArb(FTX):
         # Retrieve price of selected options
         df['option_price'] = [self.get_deribit_price(option) for option in df.instrument_name]
         df = df.sort_values("strike")
-        
         return df
 
      def compare(self, data):
@@ -205,7 +202,7 @@ class VolArb(FTX):
             opportunity between the FTX and Deribit straddle.
             
         """        
-        # Ensure the dataframe is properly inputted by the user
+        # Ensures the dataframe is properly inputted by the user
         if len(data)==0:
             print("The threshold values are too low to detect any similar options." \
             " Please increase the `strike_threshold` and `days_threshold` parameters.")
@@ -227,11 +224,11 @@ class VolArb(FTX):
         # Combine Into DataFrame
         data = { 'deribit_straddle': [straddle_position, straddle_price, straddle_time],
                  'ftx_move': [self.ftx_comparable_contract, ftx_price, ftx_time],
-                 'straddle-move_difference': ['NA', straddle_price - ftx_price, straddle_time - ftx_time]}
-                  
+                 'difference': ['NA', straddle_price - ftx_price, straddle_time - ftx_time]}
         df = pd.DataFrame(data, index=['Position', 'Price', 'Days Left'])
-        print(round((ftx_price/straddle_price-1)*100, 3), "% price differential between FTX MOVE and similar Deribit contracts")
+        print(round((ftx_price/straddle_price-1)*100, 3), "% price differential between FTX MOVE and similar Deribit straddle")
         return df
+
 v = VolArb("BTC-MOVE-WK-0828", 300, 2)
 data = v.get_comparable_deribit()
 print(v.compare(data))        
