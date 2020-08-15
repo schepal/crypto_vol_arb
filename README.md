@@ -1,5 +1,5 @@
-# Bitcoin Volatility Arbitrage Scanner 
-A tool used to analyze volatility arbitrage opportunities in cryptocurrency markets. 
+# Bitcoin Volatility Arbitrage Trading 
+A tool used to analyze volatility arbitrage opportunities in cryptocurrency derivative markets. 
 
 #### Disclaimer: This tool is only for demonstration purposes and is not financial advice. This script has not undergone extensive testing and is prone to errors and bugs. Use this tool at your own risk. 
 
