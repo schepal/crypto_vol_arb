@@ -59,6 +59,10 @@ call	     12000.0	  BTC-28AUG20-12000-C	 13.132293	       12.46561          482.
 
 """-33.695 % price differential between FTX MOVE and similar Deribit straddle"""
 ```
+When instantiating the `VolArb` class, you may have to tweak the `strike_threshold` and `days_threshold` parameters to 
+widen the scope for which Deribit options to trade. Please refer to the detailed documentation in the `crypto_vol.py` file 
+to better understand the parameters for each individual component. 
+
 Below we can manually see how to assess the trading opportunity. 
 
 ### Deribit Options Chain 
