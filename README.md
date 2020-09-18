@@ -1,10 +1,10 @@
 # Bitcoin Volatility Arbitrage Trading 
-A tool used to analyze volatility arbitrage opportunities in cryptocurrency derivative markets. 
+A tool used to analyze volatility arbitrage opportunities in cryptocurrency option markets. 
 
 #### Disclaimer: This tool is only for demonstration purposes and is not financial advice. This script has not undergone extensive testing and is prone to errors and bugs. Use this tool at your own risk. 
 
 ## Overview
-Option contracts are powerful financial instruments to execute a variety of different trading strategies. Notably, the popular long straddle trade is a combination of buying a call and put with the same strike and maturity. A trader would purchase a straddle if they expect future volatility to be higher based on their forecast. In this case, the trader doesn’t care whether the price of an asset goes up or down. Rather the trader cares about ***how*** fast the price moves as they wish to profit from an increase in volatility (either direction). 
+Option contracts are powerful financial instruments used to execute a variety of different trading strategies. Notably, the popular long straddle trade is a combination of buying a call and put with the same strike and maturity. A trader would purchase a straddle if they expect their forecasted future volatility to be greater than the current implied volatility. In this case, the trader doesn’t care whether the price of an asset goes up or down. Rather the trader cares about ***how*** fast the price moves as they wish to profit from an increase in volatility (either direction). 
 
 Deribit Exchange offers the greatest option market liquidity relative to the other players in this space. Using the calls and puts trading on Deribit, we can create our own straddle by going long the respective calls and puts. 
 
@@ -55,7 +55,7 @@ call	     12000.0	  BTC-28AUG20-12000-C	 13.132293	       12.46561          482.
 
 """-33.695 % price differential between FTX MOVE and similar Deribit straddle"""
 ```
-Below we can manually see how to assess trading opportunity. 
+Below we can manually see how to assess the trading opportunity. 
 
 ### Deribit Options Chain 
 ![](/screenshots/deribit_screenshot.png)
@@ -81,12 +81,13 @@ Note these numbers aren’t exactly the same as the figures below because the sc
 ### Arbitrage Output Analysis
 ![](/screenshots/example_table_output.png)
 
-## Risks and Assumptions Involved
-- Not a truly risk-free trade
-- Counterparty Risk
-- Assumption that trades placed at mid-price
-- Margin Called on Trades
-- Liquidity Risk 
+## Risks and Limitations
+Below are only some of the many risks associated with this trading opportunity.
+
+- Counterparty Risk: In the case either Deribit or FTX goes down, one leg of the trade is now exposed to price moves and would need to be closed immediately to avoid further delta exposure.
+- Assumption that trades placed at mid-price: Relative to traditional financial option markets, the spreads for Deribit straddles and FTX MOVE contracts are quite large. As a result, poor execution will erode away any arbitrage profits. 
+- Margin Requirement: This trade is not capital efficient as it requires margin to be posted on two separate exchanges. As a result, portfolio margin for this trade cannot be effectivey utilized. 
+- Liquidity Risk: In the case that liquidity is low on either exchange the arbitrage relationship may not hold as markets may become even more inefficient. Furthermore, a lack of liquidity in these derivative markets can be particularly difficult for traders wanting to close their positions. 
 
 ## Installation of dependencies
 Run the following command in terminal to install all of the required packages.
