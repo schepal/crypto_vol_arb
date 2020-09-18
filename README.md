@@ -12,8 +12,12 @@ FTX is another prominent exchange which offers a product called MOVE contracts. 
 
 In theory an FTX MOVE contract with a similar maturity should be priced closely in line to the respective Deribit at-the-money straddle. After some observation it became quite surprising that the price differences between these two venues were too large to overlook.
 
-## Key Parameters
-- Discuss thresholds and how to use the script
+## Quick Guide On Usage
+There are two primary classes in this script which need to be used.
+
+1. `FTX`: This will be used to retrieve all of the relevant FTX MOVE contract data. You will need to instantiate this class first seperately to get a list of the various MOVE contracts which you would like to analyze. 
+
+2. `VolArb`: This is the primary class which inherits the `FTX` class and its respective methods. This is the class which you will use to directly compare the Deribit and FTX prices accordingly. 
 
 ## Example
 In the example below, the script is setup to show how to analyze arbitrage opportunites for the chosen FTX MOVE contract.
@@ -76,7 +80,7 @@ FTX MOVE Mid-Price = (674 + 695) / 2 = 684.50
 
 Difference = 998.435 - 684.50 = 313.94
 
-Note these numbers aren’t exactly the same as the figures below because the screenshots used the mid-price whereas the actual table below was calculated using the Deribit mark price. 
+Note these numbers aren’t exactly the same as the figures below because the screenshots were captured at an earlier time before the script was run. 
 
 ### Arbitrage Output Analysis
 ![](/screenshots/example_table_output.png)
