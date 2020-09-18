@@ -88,7 +88,7 @@ Note these numbers aren’t exactly the same as the figures below because the sc
 ## Risks and Limitations
 Below are only some of the many risks associated with this trading opportunity.
 
-- Counterparty Risk: In the case either Deribit or FTX goes down, one leg of the trade is now exposed to price moves and would need to be closed immediately to avoid further delta exposure.
-- Assumption that trades placed at mid-price: Relative to traditional financial option markets, the spreads for Deribit straddles and FTX MOVE contracts are quite large. As a result, poor execution will erode away any arbitrage profits. 
-- Margin Requirement: This trade is not capital efficient as it requires margin to be posted on two separate exchanges. As a result, portfolio margin for this trade cannot be effectivey utilized. 
-- Liquidity Risk: In the case that liquidity is low on either exchange the arbitrage relationship may not hold as markets may become even more inefficient. Furthermore, a lack of liquidity in these derivative markets can be particularly difficult for traders wanting to close their positions. 
+- **Counterparty Risk**: In the case either Deribit or FTX goes down, one leg of the trade is now exposed to price moves and would need to be closed immediately to avoid further delta exposure.
+- **Margin Requirement**: This trade is not capital efficient as it requires margin to be posted on two separate exchanges. As a result, portfolio margin for this trade cannot be effectivey utilized. 
+- **Liquidity Risk**: In the case that liquidity is low on either exchange the arbitrage relationship may not hold as markets may become even more inefficient. Furthermore, a lack of liquidity in these derivative markets can be particularly difficult for traders wanting to close their positions. 
+- **Assume trades are placed at mid-price**: Relative to traditional financial option markets, the spreads for Deribit straddles and FTX MOVE contracts are quite large. As a result, poor execution will erode away any arbitrage profits. Using [Paradigm's](https://www.paradigm.co/) RFQ service can help reduce the   on the Deribit leg of this trade.
