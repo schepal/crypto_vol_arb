@@ -1,7 +1,7 @@
 # Bitcoin Deribit/FTX Volatility Arbitrage
 A tool used to analyze arbitrage opportunities between Deribit and FTX cryptocurrency option markets. 
 
-#### Disclaimer: This tool is only for demonstration purposes and is not financial advice. This script has not undergone extensive testing and is prone to errors and bugs. Use this tool at your own risk. 
+#### Disclaimer: This tool is only for demonstration purposes and is not financial advice. This script has not undergone extensive testing and may have hidden bugs. Use this tool at your own risk. 
 
 ## Overview
 Option contracts are powerful financial instruments used to execute a variety of different trading strategies. Notably, the popular long straddle trade is a combination of buying a call and put with the same strike and maturity. A trader would purchase a straddle if they expect their forecasted future volatility to be greater than the current implied volatility. In this case, the trader doesn’t care whether the price of an asset goes up or down. Rather the trader cares about ***how*** fast the price moves as they wish to profit from an increase in volatility (either direction). 
