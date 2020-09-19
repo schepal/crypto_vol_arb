@@ -4,9 +4,9 @@ A tool used to analyze arbitrage opportunities between Deribit and FTX cryptocur
 #### Disclaimer: This tool is only for demonstration purposes and is not financial advice. This script has not undergone extensive testing and may have hidden bugs. Use this tool at your own risk. 
 
 ## Overview
-Option contracts are powerful financial instruments used to execute a variety of different trading strategies. Notably, the popular long straddle trade is a combination of buying a call and put with the same strike and maturity. A trader would purchase a straddle if they expect their forecasted future volatility to be greater than the current implied volatility. In this case, the trader doesn’t care whether the price of an asset goes up or down. Rather the trader cares about ***how*** fast the price moves as they wish to profit from an increase in volatility (either direction). 
+Option contracts are powerful financial instruments used to execute a variety of different trading strategies. Notably, the popular long straddle trade is a combination of buying a call and put with the same strike and maturity. A trader would purchase a straddle if they expect their forecasted future volatility to be greater than the current implied volatility. In this case, the trader doesn’t care whether the price of an asset goes up or down. Rather the trader cares about ***how fast*** the price moves as they wish to profit from an increase in volatility (either direction). 
 
-Deribit Exchange offers the greatest option market liquidity relative to the other players in this space. Using the calls and puts trading on Deribit, we can create our own straddle by going long the respective calls and puts. 
+Deribit Exchange offers the greatest option market liquidity relative to the other players in this space. Using the calls and puts trading on Deribit, we can create our own straddle by going long the respective at the money calls and puts. 
 
 FTX is another prominent exchange which offers a product called MOVE contracts. These MOVE contracts are quite similar to straddles in the sense their value is derived from the “[absolute value of the amount a product moves in a period of time](https://help.ftx.com/hc/en-us/articles/360033136331-MOVE-contracts#:~:text=What%20are%20MOVE%20contracts%3F,BTC%20went%20up%20or%20down).” 
 
@@ -17,7 +17,7 @@ There are two primary classes in this script which need to be used.
 
 1. `FTX`: This will be used to retrieve all of the relevant FTX MOVE contract data. You will need to instantiate this class first seperately to get a list of the various MOVE contracts which you would like to analyze. 
 
-2. `VolArb`: This is the primary class which inherits the `FTX` class and its respective methods. This is the class which you will use to directly compare the Deribit and FTX prices accordingly. 
+2. `VolArb`: This is the primary class which inherits the `FTX` class and its respective methods. This class allows direct comparison between the Deribit and FTX prices accordingly. 
 
 ## Example
 In the example below, the script is setup to show how to analyze arbitrage opportunites for the chosen FTX MOVE contract.
@@ -90,9 +90,9 @@ Note these numbers aren’t exactly the same as the figures below because the sc
 ![](/screenshots/example_table_output.png)
 
 ## Risks and Limitations
-Below are only some of the many risks associated with this trading opportunity.
+Below are some of the many risks associated with this trading opportunity.
 
 - **Counterparty Risk**: In the case either Deribit or FTX goes down, one leg of the trade is now exposed to price moves and would need to be closed immediately to avoid further delta exposure.
 - **Margin Requirement**: This trade is not capital efficient as it requires margin to be posted on two separate exchanges. As a result, portfolio margin for this trade cannot be effectivey utilized. 
-- **Liquidity Risk**: In the case that liquidity is low on either exchange the arbitrage relationship may not hold as markets may become even more inefficient. Furthermore, a lack of liquidity in these derivative markets can be particularly difficult for traders wanting to close their positions. 
-- **Assume trades are placed at mid-price**: Relative to traditional financial option markets, the spreads for Deribit straddles and FTX MOVE contracts are quite large. As a result, poor execution will erode away any arbitrage profits. Using [Paradigm's](https://www.paradigm.co/) RFQ service can help reduce the   on the Deribit leg of this trade.
+- **Liquidity Risk**: If liquidity is low on either exchange the arbitrage relationship may not hold as markets could become even more inefficient. Furthermore, a lack of liquidity in these derivative markets can be difficult for traders wanting to close their positions. 
+- **Assume trades are placed at mid-price**: Relative to traditional financial option markets, the spreads for Deribit straddles and FTX MOVE contracts are quite large. As a result, poor execution will erode away any arbitrage profits. Using [Paradigm's](https://www.paradigm.co/) RFQ service can help reduce slippage on the Deribit leg of this trade.
