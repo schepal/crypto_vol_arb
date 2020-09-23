@@ -3,6 +3,10 @@ A tool used to analyze arbitrage opportunities between Deribit and FTX cryptocur
 
 #### Disclaimer: This tool is only for demonstration purposes and is not financial advice. This script has not undergone extensive testing and may have hidden bugs. Use this tool at your own risk. 
 
+####
+**Update: Sept. 22nd, 2020:** I received some valuable feedback from a veteran trader who noticed a slight error in how I calculated the FTX MOVE contract strike prices. For MOVE contracts with no strike, I made the assumption that the index price would be equivalent to the strike price. This approximation is technically not correct as the MOVE strike is determined when the contract enters its "expiration period". If we are trading a weekly MOVE, then the strike will be known seven days before its expiration date (using the TWAP of the first hour). One potential way to overcome this issue is to only trade MOVE contracts which have pre-set strike prices (they are in their expiry period). I'll make these adjustments after I get a chance to dive deeper into understanding the various assumptions involved with this strategy.
+
+
 ## Overview
 Option contracts are powerful financial instruments used to execute a variety of different trading strategies. Notably, the popular long straddle trade is a combination of buying a call and put with the same strike and maturity. A trader would purchase a straddle if they expect their forecasted future volatility to be greater than the current implied volatility. In this case, the trader doesn’t care whether the price of an asset goes up or down. Rather the trader cares about ***how fast*** the price moves as they wish to profit from an increase in volatility (either direction). 
 
